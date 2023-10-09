@@ -1,0 +1,46 @@
+include:
+  - template: Terraform/Base.gitlab-ci.yml
+  - template: Jobs/SAST-IaC.gitlab-ci.yml
+
+before_script:
+  - apk update
+  - apk add py3-pip gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
+  - pip install azure-cli
+  - az --version
+  - az login --service-principal -u $SERVICE_PRINCIPAL_ID -p "$SERVICE_PRINCIPAL_SECRET" --tenant "$TENANT_ID"
+
+stages:
+  - validate
+  - test
+  - build
+  - deploy
+  - cleanup
+
+fmt:
+  extends: .terraform:fmt
+  needs: []
+
+validate:
+  extends: .terraform:validate
+  needs: []
+
+build:
+  extends: .terraform:build
+
+deploy:
+  extends: .terraform:deploy
+  rules:
+    - if: $CI_COMMIT_TITLE != "destroy"
+      when: on_success
+  dependencies:
+    - build
+  environment:
+    name: $TF_STATE_NAME
+
+cleanup:
+  extends: .terraform:destroy
+  environment:
+    name: $TF_STATE_NAME
+  rules:
+    - if: $CI_COMMIT_TITLE == "destroy"
+      when: on_success
