@@ -1,6 +1,5 @@
 variable "blog_name" {
-  default = "My Blog"
-  type    = string
+  type = string
 
   validation {
     condition     = length(var.blog_name) > 0

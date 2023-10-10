@@ -15,7 +15,7 @@ variable "mysql_port" {
   description = "The port for MySQL server"
 
   validation {
-    error_message = "The port should be a number between from 1 to 65535"
+    error_message = "The port should be a number between 1 to 65535"
     condition     = var.mysql_port >= 1 && var.mysql_port <= 65535
   }
 }

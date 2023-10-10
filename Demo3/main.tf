@@ -27,9 +27,9 @@ resource "fly_ip" "ip" {
 }
 
 resource "fly_machine" "instance" {
-  count      = length(var.instances)
+  for_each   = toset(var.instances)
   app        = fly_app.app.name
-  name       = "${fly_app.app.name}-${var.instances[count.index]}"
+  name       = "${fly_app.app.name}-${each.value}"
   image      = "mabotn/say-hi"
   region     = "cdg"
   cpus       = 1
@@ -38,7 +38,7 @@ resource "fly_machine" "instance" {
 
   env = {
     PORT = 80
-    NAME = upper(var.instances[count.index])
+    NAME = upper(each.value)
   }
 
   services = [{

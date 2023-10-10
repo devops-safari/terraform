@@ -1,4 +1,4 @@
-resource "random_password" "password" {
+resource "random_password" "db_password" {
   length = 8
 }
 
@@ -27,7 +27,7 @@ resource "docker_container" "mariadb" {
   env = [
     "MARIADB_USER=wordpress",
     "MARIADB_DATABASE=wordpress",
-    "MARIADB_ROOT_PASSWORD=${random_password.password.result}"
+    "MARIADB_ROOT_PASSWORD=${random_password.db_password.result}"
   ]
 }
 
@@ -46,6 +46,6 @@ resource "docker_container" "wordpress" {
     "WORDPRESS_DB_HOST=mariadb",
     "WORDPRESS_DB_NAME=wordpress",
     "WORDPRESS_DB_USER=root",
-    "WORDPRESS_DB_PASSWORD=${random_password.password.result}"
+    "WORDPRESS_DB_PASSWORD=${random_password.db_password.result}"
   ]
 }
