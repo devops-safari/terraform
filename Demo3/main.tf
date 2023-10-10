@@ -8,11 +8,11 @@ terraform {
 }
 
 provider "fly" {
-  fly_api_token = ""
+  fly_api_token = "fo1_uY8e22fQOgdu681iwRCqmL4tSfuRrAisY5p0_5dHdkQ"
 }
 
 variable "instances" {
-  default = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+  default = ["monday", "tuesday"]
 }
 
 resource "fly_app" "app" {
