@@ -17,6 +17,6 @@ resource "azurerm_resource_group" "demo" {
 
   tags = {
     purpose      = "training"
-    organization = "sparks"
+    organization = "amadeus"
   }
 }

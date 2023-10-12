@@ -25,7 +25,6 @@ resource "docker_container" "mariadb" {
   }
 
   env = [
-    "MARIADB_USER=wordpress",
     "MARIADB_DATABASE=wordpress",
     "MARIADB_ROOT_PASSWORD=${random_password.db_password.result}"
   ]
@@ -35,7 +34,9 @@ resource "docker_container" "wordpress" {
   image        = docker_image.wordpress.image_id
   name         = "blog"
   network_mode = docker_network.blog.name
-  depends_on   = [docker_container.mariadb]
+  depends_on   = [
+    docker_container.mariadb
+  ]
 
   ports {
     internal = 80

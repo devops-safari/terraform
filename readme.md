@@ -10,9 +10,13 @@ These hands-on labs cover fundamentals of using Terraform, how to install it, ba
 
 [Lab 4 - Deploy an Nginx docker container](./Lab4/readme.md)
 
-[Lab 5 - Generate documentations for your Terraform project](./Lab5/readme.md)
+[Lab 5 - Export a Linux VM using Terraformer](./Lab5/readme.md)
 
-[Lab 6 - Build a GitLab CI/CD pipeline that deploys SonarQube to Azure](./Lab6/readme.md)
+[Lab 6 - Generate documentations for your Terraform project](./Lab6/readme.md)
+
+[Lab 7 - Build a module for deploying web VMs.](./Lab7/readme.md)
+
+[Lab 8 - Build a GitLab CI/CD pipeline that deploys SonarQube to Azure](./Lab8/readme.md)
 
 # Need help ?
 
