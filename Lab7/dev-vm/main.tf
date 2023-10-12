@@ -156,3 +156,7 @@ resource "azurerm_linux_virtual_machine" "main" {
     storage_account_uri = null
   }
 }
+
+output "public_ip" {
+  value = azurerm_public_ip.main.ip_address
+}

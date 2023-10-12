@@ -1,5 +1,5 @@
 terraform {}
 
 output "hello_world" {
-  value = "Hello, World!"
+  value = "Hello, World"
 }
