@@ -1,9 +1,17 @@
-resource "godaddy_domain_record" "main" {
-  domain = "anasbo.com"
-
-  record {
-    name = "@"
-    data = "terraform-is-the-best"
-    type = "TXT"
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "3.75.0"
+    }
   }
+}
+
+provider "azurerm" {
+  features {}
+}
+
+resource "azurerm_resource_group" "main" {
+  name = "${terraform.workspace}-rg"
+  location = "France Central"
 }
